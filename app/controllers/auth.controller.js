@@ -11,7 +11,8 @@ exports.signup = (req, res) => {
     username: req.body.username,
     email: req.body.email,
     avatar: "//ssl.gstatic.com/accounts/ui/avatar_2x.png",
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 8),
+    language: req.body.language
   });
 
   user.save((err, user) => {
@@ -104,7 +105,8 @@ exports.signin = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token
+        accessToken: token,
+        language: user.language
       });
     });
 };
